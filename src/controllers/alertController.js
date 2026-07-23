@@ -5,7 +5,7 @@ const createAlert = async (req, res, next) => {
     const { coin_id, target_price, price_condition, user_id } = req.body;
     
     // Si req.user existe (middleware JWT auth), on prend son ID, sinon on prend user_id du body ou 1
-    const userId = req.user?.id || user_id || 1;
+    const userId = req.user.id;
 
     const alert = await alertService.createAlert({
       userId,

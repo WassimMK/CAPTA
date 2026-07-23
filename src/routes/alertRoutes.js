@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const alertController = require('../controllers/alertController');
+const authMiddleware = require('../middlewares/authMiddleware');
 
-// Route POST : créer une alerte
-router.post('/', alertController.createAlert);
-
-// Route GET : récupérer les alertes
-router.get('/', alertController.getAlerts);
+router.post('/', authMiddleware, alertController.createAlert);
+router.get('/', authMiddleware, alertController.getAlerts);
 
 module.exports = router;
